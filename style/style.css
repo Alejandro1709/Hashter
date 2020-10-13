@@ -93,20 +93,6 @@ body {
   padding-left: 10px;
 }
 
-.tweets-list {
-  height: 500px;
-  margin: 20px;
-  background-color: plum;
-}
-
-.tweet-container {
-  display: flex;
-  flex-direction: column;
-  height: 100px;
-  margin: 10px;
-  background-color: salmon;
-}
-
 .tweets-sidebar-container {
   background-color: firebrick;
   /* flex-grow: 1; */
