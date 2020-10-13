@@ -12,18 +12,49 @@ body {
 
 .navigation-container {
   width: 20%;
-  background-color: aqua;
+  background-color: cyan;
   max-width: 100px;
   min-width: 70px;
 }
 
 .main {
+  display: flex;
+  flex-direction: column;
   background-color: whitesmoke;
   flex: 1;
+}
+
+.tweets-search-container {
+  height: 70px;
+  margin: 20px;
+  background-color: red;
+}
+
+.tweets-list {
+  height: 500px;
+  margin: 20px;
+  background-color: plum;
+}
+
+.tweet-container {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  margin: 10px;
+  background-color: salmon;
 }
 
 .tweets-sidebar-container {
   background-color: firebrick;
   /* flex-grow: 1; */
   flex: 1;
+}
+
+.tweets-sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin: 20px;
+  width: 200px;
+  height: 500px;
 }
