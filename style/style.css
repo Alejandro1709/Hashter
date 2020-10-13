@@ -34,10 +34,15 @@ body {
 .home-link {
   display: flex;
   justify-content: center;
-  color: #00adff;
+  align-items: center;
   font-size: 26px;
+  height: 40px;
   margin-top: 20px;
-  border-right: 1pxsolid #00adff;
+  border-right: 2px solid #00adff;
+}
+
+.home-link i {
+  color: #00adff;
 }
 
 .profile-container {
@@ -57,14 +62,35 @@ body {
 .main {
   display: flex;
   flex-direction: column;
-  background-color: whitesmoke;
   flex: 1;
 }
 
 .tweets-search-container {
-  height: 70px;
+  display: flex;
+  margin-top: 30px;
+  align-items: center;
   margin: 20px;
-  background-color: red;
+  border-bottom: 1px solid #979797;
+}
+
+.tweets-search-container input {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.tweets-search-container input:focus {
+  outline: none;
+}
+
+.tweets-search-container i {
+  color: white;
+  font-size: 30px;
+  padding-left: 10px;
 }
 
 .tweets-list {
