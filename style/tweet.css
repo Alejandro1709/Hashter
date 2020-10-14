@@ -1,10 +1,11 @@
 .tweets-list {
-  margin: 20px;
+  margin: o;
 }
 
 .tweet-container {
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
   border: 1px solid #1c1c1c;
   border-radius: 20px;
   overflow: hidden;
@@ -21,8 +22,9 @@
 .tweet-user-profile {
   width: 30px;
   height: 30px;
-  background-color: green;
   border: 1px solid #979797;
+  background-position: center;
+  background-size: cover;
   border-radius: 50%;
 }
 
@@ -40,12 +42,38 @@
 }
 
 .tweet-imaages-container {
+  display: flex;
+  overflow: hidden;
+  flex-wrap: wrap;
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
   height: 200px;
   border: 1px solid #1c1c1c;
   border-radius: 20px;
+}
+
+.tweet-image {
+  background-image: url('https://images.unsplash.com/photo-1602527863195-2764446acf94?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60');
+  flex-basis: 50%;
+  background-size: cover;
+  background-position: center;
+  flex-grow: 1;
+}
+
+.tweet-video-container {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+  height: 200px;
+  border: 1px solid #1c1c1c;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.tweet-video-container video {
+  height: 100%;
+  width: 100%;
 }
 
 .tweet-text-container {

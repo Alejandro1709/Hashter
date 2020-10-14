@@ -12,6 +12,11 @@
       src="https://kit.fontawesome.com/c939d0e917.js"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div class="container home-page">
@@ -35,32 +40,14 @@
             id="user-search-input"
             type="text"
             placeholder="Search Twitter"
+            onkeyup="onEnter(event)"
           />
-          <i class="fas fa-search fa-flip-horizontal"></i>
+          <i
+            class="fas fa-search fa-flip-horizontal"
+            onclick="getTwitterData()"
+          ></i>
         </div>
-        <div class="tweets-list">
-          <div class="tweet-container">
-            <div class="tweet-user-info">
-              <div class="tweet-user-profile"></div>
-
-              <div class="tweet-user-name-container">
-                <div class="tweet-user-fullname">Alejandro La Rosa</div>
-                <div class="tweet-user-username">@alejandroLR</div>
-              </div>
-            </div>
-            <div class="tweet-imaages-container">
-              <div class="tweet-image"></div>
-            </div>
-            <div class="tweet-text-container">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-              aliquam sem et odio dapibus volutpat. Nunc sed volutpat libero.
-              Suspendisse potenti. Nullam mattis non leo vel porttito
-            </div>
-            <div class="tweet-date-container">
-              20 hours ago.
-            </div>
-          </div>
-        </div>
+        <div class="tweets-list"></div>
       </div>
       <div class="tweets-sidebar-container">
         <div class="tweets-sidebar">
