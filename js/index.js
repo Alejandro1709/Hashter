@@ -37,7 +37,11 @@ const saveNextPage = metadata => {};
 /**
  * Handle when a user clicks on a trend
  */
-const selectTrend = e => {};
+const selectTrend = e => {
+  const valuee = e.innerText;
+  document.getElementById('user-search-input').value = valuee;
+  getTwitterData();
+};
 
 /**
  * Set the visibility of next page based on if there is data on next page
