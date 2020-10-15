@@ -1,5 +1,6 @@
 const URL = 'http://localhost:3003/tweets';
 
+let nextPageUrl = null;
 /**
  * Retrive Twitter Data from API
  */
@@ -10,21 +11,34 @@ const onEnter = e => {
   }
 };
 
-const getTwitterData = () => {
+const onNextPage = () => {
+  if (nextPageUrl) {
+    getTwitterData(true);
+  }
+};
+
+const getTwitterData = (nextPage = false) => {
   const value = document.getElementById('user-search-input').value;
 
   if (value === '') {
     alert('Please enter some text');
     return;
   } else {
-    fetch(`${URL}?q=${encodeURIComponent(value)}&count=10`, {
+    const encodedQuery = encodeURIComponent(value);
+    let fullUrl = `${URL}?q=${encodedQuery}&count=10`;
+    if (nextPage && nextPageUrl) {
+      fullUrl = nextPageUrl;
+    }
+    fetch(fullUrl, {
       method: 'GET'
     })
       .then(response => {
         return response.json();
       })
       .then(data => {
-        buildTweets(data.statuses, 10);
+        buildTweets(data.statuses, nextPage);
+        saveNextPage(data.search_metadata);
+        nextPageButtonVisibility(data);
       });
   }
 };
@@ -32,7 +46,13 @@ const getTwitterData = () => {
 /**
  * Save the next page data
  */
-const saveNextPage = metadata => {};
+const saveNextPage = metadata => {
+  if (metadata.next_results) {
+    nextPageUrl = `${URL}${metadata.next_results}`;
+  } else {
+    nextPageUrl = null;
+  }
+};
 
 /**
  * Handle when a user clicks on a trend
@@ -46,7 +66,13 @@ const selectTrend = e => {
 /**
  * Set the visibility of next page based on if there is data on next page
  */
-const nextPageButtonVisibility = metadata => {};
+const nextPageButtonVisibility = metadata => {
+  if (metadata.next_results) {
+    document.getElementById('next-page-container').style.visibility = 'visible';
+  } else {
+    document.getElementById('next-page-container').style.visibility = 'hidden';
+  }
+};
 
 /**
  * Build Tweets HTML based on Data from API
@@ -81,7 +107,15 @@ const buildTweets = (tweets, nextPage) => {
   </div>
     `;
 
-    document.querySelector('.tweets-list').innerHTML = twitterContent;
+    if (nextPage) {
+      document.querySelector(
+        '.tweets-list'
+      ).insertAdjacentHTML = twitterContent;
+    } else {
+      document
+        .querySelector('.tweets-list')
+        .insertAdjacentHTML('beforeend', twitterContent);
+    }
   });
 };
 
@@ -112,20 +146,26 @@ const buildVideo = mediaList => {
   mediaList.map(media => {
     if (media.type == 'video') {
       videoExists = true;
+      const videoVariant = media.video_info.variants.find(
+        variant => variant.content_type == 'video/mp4'
+      );
       videoContent += `
       <video controls>
-      <source src="${media.video_info.variants[0].url}" type="video/mp4">
-      </video
+      <source src="${videoVariant.url}" type="video/mp4">
+      </video>
       `;
     } else if (media.type == 'animated_gif') {
       videoExists = true;
+      const videoVariant = media.video_info.variants.find(
+        variant => variant.content_type == 'video/mp4'
+      );
       videoContent += `
       <video loop autoplay>
-      <source src="${media.video_info.variants[0].url}" type="video/mp4">
-      </video
+      <source src="${videoVariant.url}" type="video/mp4">
+      </video>
       `;
     }
   });
   videoContent += `</div>`;
-  return imagesExist ? videoContent : '';
+  return videoExists ? videoContent : '';
 };
